@@ -1,0 +1,25 @@
+- type: remove
+  path: /releases/name=garden-linux
+
+- type: replace
+  path: /instance_groups/name=bosh/jobs/name=garden/release
+  value: garden-runc
+
+- type: replace
+  path: /releases/-
+  value:
+    name: garden-runc
+    version: "1.9.2"
+    url: https://s3.amazonaws.com/bosh-compiled-release-tarballs/garden-runc-1.9.2-ubuntu-trusty-3445.7-20170901-174605-756404527-20170901174611.tgz?versionId=ulUDAhslbDcla1qt6_D1.HkLRYbES18p
+    sha1: 8028f7e832b32f305bbd45b1636be23334805e2f
+
+- type: replace
+  path: /instance_groups/name=bosh/jobs/name=garden/properties?/garden
+  value:
+    listen_network: tcp
+    listen_address: 127.0.0.1:7777
+    debug_listen_address: 127.0.0.1:17013
+    allow_host_access: true
+    destroy_containers_on_start: true # avoids snapshots
+    default_container_grace_time: 0
+    graph_cleanup_threshold_in_mb: 0

@@ -387,6 +387,7 @@ func (m *Manager) DeleteDirector(state storage.State, terraformOutputs terraform
 	}
 	osSetenv("BOSH_ALL_PROXY", fmt.Sprintf("socks5://%s", addr))
 
+	//TODO: Wrap this in an initialized?
 	err = m.executor.DirectorCreateEnvArgs(iaasInputs)
 	if err != nil {
 		return err
@@ -432,6 +433,7 @@ func (m *Manager) DeleteJumpbox(state storage.State, terraformOutputs terraform.
 		Variables:     state.Jumpbox.Variables,
 	}
 
+	//TODO: Wrap this in an initialized?
 	err = m.executor.JumpboxCreateEnvArgs(iaasInputs)
 	if err != nil {
 		return err

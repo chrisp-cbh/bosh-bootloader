@@ -24,7 +24,6 @@ type Manager struct {
 }
 
 type directorVars struct {
-	address        string
 	username       string
 	password       string
 	sslCA          string
@@ -244,8 +243,6 @@ func (m *Manager) CreateDirector(state storage.State, terraformOutputs terraform
 		parsedInternalCIDR, _ = ParseCIDRBlock(internalCIDR)
 	}
 	internalIP := parsedInternalCIDR.GetNthIP(6).String()
-
-
 
 	state.BOSH = storage.BOSH{
 		DirectorName:           fmt.Sprintf("bosh-%s", state.EnvID),
@@ -522,7 +519,6 @@ func getDirectorVars(v string) directorVars {
 	}
 
 	return directorVars{
-		address:        "https://10.0.0.6:25555",
 		username:       "admin",
 		password:       vars.AdminPassword,
 		sslCA:          vars.DirectorSSL.CA,

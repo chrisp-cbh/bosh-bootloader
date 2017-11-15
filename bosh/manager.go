@@ -357,11 +357,6 @@ func (m *Manager) DeleteJumpbox(state storage.State, terraformOutputs terraform.
 func (m *Manager) GetJumpboxDeploymentVars(state storage.State, terraformOutputs terraform.Outputs) string {
 	internalCIDR := terraformOutputs.GetString("internal_cidr")
 
-	switch state.IAAS {
-	case "vsphere":
-		internalCIDR = state.VSphere.Subnet
-	}
-
 	parsedInternalCIDR, err := ParseCIDRBlock(internalCIDR)
 	if err != nil {
 		internalCIDR = "10.0.0.0/24"

@@ -657,7 +657,7 @@ internal_gw: 10.80.30.1
 internal_ip: 10.80.30.5
 external_ip: 10.80.30.6
 network_name: plum
-resource_pool: plum
+vcenter_rp: plum
 vcenter_dc: fruits-dc
 vcenter_ds: fruits-ds
 vcenter_ip: 10.90.20.3

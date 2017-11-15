@@ -453,6 +453,20 @@ func (m *Manager) GetDirectorDeploymentVars(state storage.State, terraformOutput
 	}
 
 	switch state.IAAS {
+	case "vsphere":
+		vars.VSphereYAML = VSphereYAML{
+			VCenterUser:       state.VSphere.VCenterUser,
+			VCenterPassword:   state.VSphere.VCenterPassword,
+			VCenterIP:         state.VSphere.VCenterIP,
+			VCenterDatacenter: state.VSphere.Datacenter,
+			VCenterCluster:    state.VSphere.Cluster,
+			ResourcePool:      state.VSphere.ResourcePool,
+			NetworkName:       state.VSphere.Network,
+			VCenterDatastore:  state.VSphere.Datastore,
+			VCenterDisks:      fmt.Sprintf("%s", state.VSphere.Network),
+			VCenterVMs:        fmt.Sprintf("%s_vms", state.VSphere.Network),
+			VCenterTemplates:  fmt.Sprintf("%s_templates", state.VSphere.Network),
+		}
 	case "gcp":
 		vars.GCPYAML = GCPYAML{
 			Zone:           state.GCP.Zone,

@@ -14,9 +14,9 @@ func NewInputGenerator() InputGenerator {
 
 func (i InputGenerator) Generate(state storage.State) (map[string]interface{}, error) {
 	cidr := state.VSphere.Subnet
-	parsedCidr, _ := bosh.ParseCIDRBlock(cidr)
+	parsedCIDR, _ := bosh.ParseCIDRBlock(cidr)
 	return map[string]interface{}{
 		"vsphere_subnet": cidr,
-		"jumpbox_ip":     parsedCidr.GetNthIP(10).String(),
+		"external_ip":    parsedCIDR.GetNthIP(5).String(),
 	}, nil
 }
